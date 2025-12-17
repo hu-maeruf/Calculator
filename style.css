@@ -35,7 +35,7 @@
     margin-left: 10px;
 }
 
-.button {
+button {
     border: none;
     border-radius: 5px;
     box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.2);
@@ -45,7 +45,7 @@
     text-align: center;
 }
 
-.row > .button {
+.row > button {
     flex: 1;
 }
 
