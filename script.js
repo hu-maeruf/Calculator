@@ -52,6 +52,7 @@ buttons.forEach((btn) => {
             display.textContent = input;
             if (flag && firstNumber !== "") {
                 firstNumber = "";
+                secondNumber = null;
                 flag = false;
             }
         } else if (clickedButton === "+" || clickedButton === "-" || clickedButton === "*" || clickedButton === "/") {
