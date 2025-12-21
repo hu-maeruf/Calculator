@@ -57,11 +57,7 @@ buttons.forEach((btn) => {
             }
         } else if (clickedButton === "+" || clickedButton === "-" || clickedButton === "*" || clickedButton === "/") {
             if (firstNumber !== ""){
-                secondNumber = Number(input);
-                const result = operate(firstNumber, operator, secondNumber);
-                display.textContent = result;
-                firstNumber = result;
-                input = "";
+                calculate();
                 operator = clickedButton;
                 flag = false;
             } else {
@@ -71,12 +67,8 @@ buttons.forEach((btn) => {
             }
 
         } else if (clickedButton === "=") {
-            if (secondNumber === null || secondNumber === 0) {
-                secondNumber = Number(input);
-                const result = operate(firstNumber, operator, secondNumber);
-                display.textContent = result;
-                firstNumber = result;
-                input = "";
+            if (secondNumber === null || !isNaN(secondNumber)) {
+                calculate();
                 flag = true;
             } else {
                 const result = operate(firstNumber, operator, secondNumber);
@@ -98,3 +90,11 @@ function clearDisplay() {
     input = "";
     display.textContent = 0;
 };
+
+function calculate() {
+    secondNumber = Number(input);
+    const result = operate(firstNumber, operator, secondNumber);
+    display.textContent = result;
+    firstNumber = result;
+    input = "";
+}
