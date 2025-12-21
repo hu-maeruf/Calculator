@@ -30,3 +30,13 @@ function operate(num1, sign, num2) {
             break;
     };
 };
+
+const numbers = document.querySelectorAll(".number");
+const display = document.querySelector("#display");
+const buttons = document.querySelectorAll("button");
+const clear = document.querySelector("#clear");
+const equal = document.querySelector("#equal");
+
+let firstNumber = "";
+let secondNumber = "";
+let operator = "";
