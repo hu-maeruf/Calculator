@@ -42,9 +42,36 @@ let secondNumber = "";
 let operator = "";
 let input = "";
 
-numbers.forEach((num) => {
-    num.addEventListener("click", () => {
-        input += num.textContent;
-        display.textContent = input;
+
+buttons.forEach((btn) => {
+    btn.addEventListener("click", () => {
+        let clickedButton = btn.textContent;
+
+        if(!isNaN(clickedButton)) {
+            input += clickedButton;
+            display.textContent = input;
+        } else if (clickedButton === "+" || clickedButton === "-" || clickedButton === "*" || clickedButton === "/") {
+            firstNumber = Number(input);
+            operator = clickedButton;
+            input = "";
+        } else if (clickedButton === "=") {
+            secondNumber = Number(input);
+            const result = operate(firstNumber, operator, secondNumber);
+            display.textContent = result;
+            firstNumber = result;
+            input = "";
+            operator = "";
+        } else if (clickedButton === "clear") {
+            clearDisplay();
+        };
     });
 });
+
+
+function clearDisplay() {
+    firstNumber = "";
+    secondNumber = "";
+    operator = "";
+    input = "";
+    display.textContent = 0;
+}
