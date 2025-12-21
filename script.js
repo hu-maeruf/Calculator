@@ -55,7 +55,7 @@ buttons.forEach((btn) => {
                 secondNumber = null;
                 flag = false;
             }
-        } else if (clickedButton === "+" || clickedButton === "-" || clickedButton === "*" || clickedButton === "/") {
+        } else if (clickedButton === "+" || clickedButton === "-" || clickedButton === "*" || clickedButton === "/") { 
             if (firstNumber !== ""){
                 calculate();
                 operator = clickedButton;
@@ -67,10 +67,10 @@ buttons.forEach((btn) => {
             }
 
         } else if (clickedButton === "=") {
-            if (secondNumber === null || !isNaN(secondNumber)) {
+            if (secondNumber === null) {
                 calculate();
                 flag = true;
-            } else {
+            } else if (!isNaN(secondNumber)){
                 const result = operate(firstNumber, operator, secondNumber);
                 display.textContent = result;
                 firstNumber = result;
@@ -94,6 +94,10 @@ function clearDisplay() {
 function calculate() {
     secondNumber = Number(input);
     const result = operate(firstNumber, operator, secondNumber);
+    if (result === Infinity) {
+        clearDisplay();
+        return;
+    }
     display.textContent = result;
     firstNumber = result;
     input = "";
