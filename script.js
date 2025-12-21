@@ -38,10 +38,10 @@ const clear = document.querySelector("#clear");
 const equal = document.querySelector("#equal");
 
 let firstNumber = "";
-let secondNumber = "";
+let secondNumber = null;
 let operator = "";
 let input = "";
-
+let flag = false;
 
 buttons.forEach((btn) => {
     btn.addEventListener("click", () => {
@@ -50,20 +50,42 @@ buttons.forEach((btn) => {
         if(!isNaN(clickedButton)) {
             input += clickedButton;
             display.textContent = input;
+            if (flag && firstNumber !== "") {
+                firstNumber = "";
+                flag = false;
+            }
         } else if (clickedButton === "+" || clickedButton === "-" || clickedButton === "*" || clickedButton === "/") {
-            firstNumber = Number(input);
-            operator = clickedButton;
-            input = "";
+            if (firstNumber !== ""){
+                secondNumber = Number(input);
+                const result = operate(firstNumber, operator, secondNumber);
+                display.textContent = result;
+                firstNumber = result;
+                input = "";
+                operator = clickedButton;
+                flag = false;
+            } else {
+                firstNumber = Number(input);
+                operator = clickedButton;
+                input = "";
+            }
+
         } else if (clickedButton === "=") {
-            secondNumber = Number(input);
-            const result = operate(firstNumber, operator, secondNumber);
-            display.textContent = result;
-            firstNumber = result;
-            input = "";
-            operator = "";
-        } else if (clickedButton === "clear") {
+            if (secondNumber === null || secondNumber === 0) {
+                secondNumber = Number(input);
+                const result = operate(firstNumber, operator, secondNumber);
+                display.textContent = result;
+                firstNumber = result;
+                input = "";
+                flag = true;
+            } else {
+                const result = operate(firstNumber, operator, secondNumber);
+                display.textContent = result;
+                firstNumber = result;
+            }
+
+        } else if (clickedButton === "Clear") {
             clearDisplay();
-        };
+        }
     });
 });
 
@@ -74,4 +96,4 @@ function clearDisplay() {
     operator = "";
     input = "";
     display.textContent = 0;
-}
+};
