@@ -40,3 +40,11 @@ const equal = document.querySelector("#equal");
 let firstNumber = "";
 let secondNumber = "";
 let operator = "";
+let input = "";
+
+numbers.forEach((num) => {
+    num.addEventListener("click", () => {
+        input += num.textContent;
+        display.textContent = input;
+    });
+});
