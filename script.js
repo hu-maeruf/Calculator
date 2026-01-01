@@ -62,28 +62,14 @@ buttons.forEach((btn) => {
             return;
         }
 
-        if (clickedButton === "+" || clickedButton === "-" || clickedButton === "*" || clickedButton === "/") { 
-            if (firstNumber !== ""){
-                calculate();
-                operator = clickedButton;
-                flag = false;
-            } else {
-                firstNumber = Number(input);
-                operator = clickedButton;
-                input = "";
-            }
-
-        } else if (clickedButton === "=") {
-            if (secondNumber === null) {
-                calculate();
-                flag = true;
-            } else if (!isNaN(secondNumber)){
-                const result = operate(firstNumber, operator, secondNumber);
-                display.textContent = result;
-                firstNumber = result;
-            }
-
-        }
+        // Operator clicked
+        if (operator !== null ) { 
+            calculate();
+        } else if (input !== "") {
+            firstNumber = Number(input);
+            input = "";
+        };
+        operator = clickedButton;
     });
 });
 
