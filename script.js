@@ -37,11 +37,9 @@ const buttons = document.querySelectorAll("button");
 const clear = document.querySelector("#clear");
 const equal = document.querySelector("#equal");
 
-let firstNumber = "";
-let secondNumber = null;
-let operator = "";
+let firstNumber = null;
+let operator = null;
 let input = "";
-let flag = false;
 
 buttons.forEach((btn) => {
     btn.addEventListener("click", () => {
