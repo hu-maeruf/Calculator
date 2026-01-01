@@ -82,17 +82,20 @@ buttons.forEach((btn) => {
 
 
 function clearDisplay() {
-    firstNumber = "";
-    secondNumber = "";
-    operator = "";
+    firstNumber = null;
+    operator = null;
     input = "";
     display.textContent = 0;
 };
 
 function calculate() {
-    secondNumber = Number(input);
+    if (firstNumber === null || input === "" || operator === null) {
+        return;
+    }
+    const secondNumber = Number(input);
     const result = operate(firstNumber, operator, secondNumber);
-    if (result === Infinity) {
+    if (result ===null) {
+        alert("Can't divide by zero")
         clearDisplay();
         return;
     }
